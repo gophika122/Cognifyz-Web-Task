@@ -3,89 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Webpage</title>
+    <title>JavaScript Task</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             text-align: center;
             background-color: #f5f5f5;
+            padding: 20px;
         }
 
-        /* Navigation Menu */
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 15px;
-            font-size: 18px;
-        }
-        nav a:hover {
-            color: #ffcc00;
-        }
-
-        /* Content */
         .container {
-            max-width: 600px;
-            margin: 20px auto;
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
         }
 
-        /* Form */
-        form {
-            margin-top: 20px;
-        }
-        input {
-            padding: 8px;
-            width: 70%;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            padding: 8px 15px;
-            background-color: #333;
+        /* Button Styling */
+        .color-btn {
+            padding: 10px 20px;
+            background-color: blue;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #ffcc00;
-            color: black;
+        .color-btn:hover {
+            background-color: darkblue;
+        }
+
+        /* Calculator Styling */
+        .calculator input {
+            padding: 8px;
+            width: 80px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .calculator button {
+            padding: 8px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Menu -->
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </nav>
-
-    <!-- Main Content -->
     <div class="container">
-        <h1>Welcome to My Simple Webpage</h1>
-        <p>This is a basic webpage using HTML and CSS.</p>
-        <img src="https://via.placeholder.com/400" alt="Sample Image" width="100%">
+        <h2>JavaScript Task</h2>
 
-        <!-- Form -->
-        <form>
-            <label for="name">Enter Your Name:</label><br>
-            <input type="text" id="name" name="name" placeholder="Type here..." required>
-            <br>
-            <button type="submit">Submit</button>
-        </form>
+        <!-- Task 1: Button Changing Color -->
+        <h3>Click the Button to Change Color</h3>
+        <button class="color-btn" onclick="changeColor()">Click Me</button>
+
+        <!-- Task 2: Alert Box Based on Time -->
+        <h3>Check Greeting</h3>
+        <button onclick="showGreeting()">Show Greeting</button>
+
+        <!-- Task 3: Basic Calculator -->
+        <h3>Simple Calculator</h3>
+        <div class="calculator">
+            <input type="number" id="num1" placeholder="Num 1">
+            <input type="number" id="num2" placeholder="Num 2">
+            <button onclick="calculateSum()">Add</button>
+            <h4>Result: <span id="result">0</span></h4>
+        </div>
     </div>
+
+    <script>
+        // Task 1: Change Button Color
+        function changeColor() {
+            let button = document.querySelector(".color-btn");
+            let randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+            button.style.backgroundColor = randomColor;
+        }
+
+        // Task 2: Greeting Alert Based on Time
+        function showGreeting() {
+            let hours = new Date().getHours();
+            let greeting;
+            if (hours < 12) {
+                greeting = "Good Morning! ☀️";
+            } else if (hours < 18) {
+                greeting = "Good Afternoon! 🌤️";
+            } else {
+                greeting = "Good Evening! 🌙";
+            }
+            alert(greeting);
+        }
+
+        // Task 3: Simple Calculator (Addition)
+        function calculateSum() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            if (!isNaN(num1) && !isNaN(num2)) {
+                document.getElementById("result").textContent = num1 + num2;
+            } else {
+                alert("Please enter valid numbers!");
+            }
+        }
+    </script>
 
 </body>
 </html>
